@@ -1,5 +1,6 @@
 body{
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Josefin Sans', sans-serif;
+
 }
 
 .header-connect{
@@ -68,7 +69,7 @@ background-color: #00aeef;
 	margin-right: 20px
 }
 .navbar-brand {
-  padding-top: 10px;
+  padding-top: 0px;
 }
 .main-nav {
   padding-top: 10px;
@@ -129,14 +130,15 @@ background-color: #00aeef;
 	color: #fff
 }
 .slider-content h2 {
-  font-size: 40px;
+  font-size: 80px;
   font-weight: 800;
   margin-bottom: 20px;
-  text-transform: uppercase;
 }
 .slider-content p {
-  font-size: 14px;
+  font-size: 20px;
   margin-bottom: 60px;
+  font-weight: bold;
+
 }
 
 .slider .owl-theme .owl-controls {
@@ -530,7 +532,7 @@ background-color: #00aeef;
 }
 
 .footer-area{
-	background: #000;
+	background: #2b8a93;
 	border-top: 4px solid #00AEEF;
 	padding-bottom: 20px
 
