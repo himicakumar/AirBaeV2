@@ -1,0 +1,54 @@
+<html>
+
+    <head>
+        <script type="text/javascript" src="script.js"></script>
+    </head>
+
+    <body>
+        <form name="searchByNumber">
+            <label>Flight Number:</label>
+            <input type="text" name="flightNumber" />
+            <br>
+            <label>Departure Date:</label>
+            <input type="date" name="deptDate">
+            <input type="button" value="Search now!" onClick="processFNumberForm()"/>
+
+   		 </form>
+
+   		 <br>
+   		 Or search by origin, destination, and time/date
+   		         <div id="flightInfo"></div>
+
+   		 <br>
+   		 <br>
+
+   		 <form name="searchByLocation">
+   		 	<label>Departure city </label>
+   		 	<select name="departure">
+                <option value="New York" selected>New York</option>
+                <option value="San Francisco">San Francisco</option>
+                <option value="Orlando" selected>Orlando</option>
+                <option value="Los Angeles">Los Angeles</option>
+                <option value="Chicago" selected>Chicago</option>
+                <option value="Washington DC">Washington DC</option>
+            </select>
+            <br>
+            <label>Arrival city </label>
+   		 	<select name="arrival">
+                <option value="New York" selected>New York</option>
+                <option value="San Francisco">San Francisco</option>
+                <option value="Orlando" selected>Orlando</option>
+                <option value="Los Angeles">Los Angeles</option>
+                <option value="Chicago" selected>Chicago</option>
+                <option value="Washington">Washington DC</option>
+            </select>
+            <br>
+            <label> Date of Departure </label>
+            <input type="date" name="deptDate">
+            <input type="button" value="Search Now" onClick="processLocationForm()"/>
+    
+        </form>
+
+    </body>
+
+</html>
