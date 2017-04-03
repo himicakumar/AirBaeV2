@@ -1818,6 +1818,8 @@
 		border-radius: 3px;
 	}
 
+		
+
 	input[type="radio"] + label:before {
 		border-radius: 100%;
 	}

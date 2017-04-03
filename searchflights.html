@@ -1,9 +1,147 @@
 <html>
 
     <head>
-        <script type="text/javascript" src="script.js"></script>
+    <title>AirBae | Rediscover Traveling</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="shortcut icon" href="images/newfav.ico" type="image/x-icon">
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+         <script type="text/javascript" src="script.js"></script>
     </head>
 
+      <script type="text/javascript" >
+   
+      
+
+          function processFNumberForm() {
+              var flightNumber = document.searchByNumber.flightNumber.value;
+              var deptDate = document.searchByNumber.deptDate.value;
+             
+              console.log("flight dept date: "  + deptDate + "fnum " + flightNumber);
+
+              //console.log(document.getElementById("flightInfo").innerHTML);
+
+              //search through array of flight objects to see if flight num matches any
+              var found = false;
+              for (var i = 0; i < array.length; i++) { 
+                console.log(array[i].fNum); //gets the flight numbers of all stored flights
+                if (flightNumber == array[i].fNum) { 
+                  //console.log("FLIGHT FOUND!!");  
+                  //document.write("FLIGHT FOUND");
+                  //DO SOMETHING HERE!
+                  displayFlightDetails(array[i]);
+                  found = true;
+                }
+              }   
+              if(!found) {
+                alert("This flight does not exist");
+              }
+          }
+
+
+          function processLocationForm() { 
+
+                var departure = document.searchByLocation.departure.value;
+                var arrival = document.searchByLocation.arrival.value;
+                var date = document.searchByLocation.deptDate.value;
+
+                console.log("Dept: " + departure + "Arrival: " + arrival + "Date: " + date);
+
+                for (var i = 0; i < array.length; i++) { 
+                //console.log(array[i].fNum); //gets the flight numbers of all stored flights
+                if (departure == array[i].fDept && arrival == array[i].fArrival && date == array[i].fDate) { 
+                  //console.log("FLIGHT FOUND!!");  
+                  displayFlightDetails(array[i]);
+                  //DO SOMETHING HERE!
+                }
+              }
+          }
+
+          function displayFlightDetails(flight) { 
+            document.write("Flight number " + flight.fNum + " leaving from " + flight.fDept + " and arriving at  " + flight.fArrival + " on " + flight.fDate);
+            document.write("<br>");
+            console.log(flight.fPassengers);
+            if (flight.fPassengers.length == 0) { 
+              document.write("There are no passengers registered on AirBae for this flight yet. Be the first!");
+              document.write("<br>");
+              tempFlightNumber = flight.fNum;
+              tempDate = flight.fDate;
+              setTemp = true;
+              document.write("Click <a href='newuser.html'> here </a> to add yourself to the flight")
+              document.write("<br>");
+
+            } else { 
+              //document.write("Current Passengers on this flight include: " + flight.fPassengers + " ");
+               var body = document.getElementsByTagName("body")[0];
+               var theTable = document.createElement('table');
+               theTable.setAttribute('id','passenger');
+               theTable.border = 1;
+               theTable.setAttribute('align', 'center');
+               body.appendChild(theTable);
+               var fields = new Array('First Name','Last Name','Want to talk?','Want to sleep?','Have Kids?', 'Like to get up?','Additional Info', 'Occasion', 'Seat Number');
+               var hrow = theTable.insertRow(0);
+               hrow.align = 'center';
+               for (var i = 0; i < fields.length; i++)
+               {
+                   var C = hrow.insertCell(i);
+                   var cellContents = document.createTextNode(fields[i]);
+                   C.appendChild(cellContents);
+               }
+               
+               for (var i = 0, len = flight.fPassengers.length; i < len; ++i) {
+                  var curr = flight.fPassengers[i];
+                 
+                  var R = theTable.insertRow(i+1);
+                  R.align = 'center';
+                  
+                  C = R.insertCell(0);
+                  cellContents = document.createTextNode(curr.fname);
+                  console.log(C);
+                  C.appendChild(cellContents);
+                  C = R.insertCell(1);
+                  cellContents = document.createTextNode(curr.lname);
+                  C.appendChild(cellContents);
+                  C = R.insertCell(2);
+                  cellContents = document.createTextNode(curr.socialize);
+                  C.appendChild(cellContents);
+                  C = R.insertCell(3);
+                  cellContents = document.createTextNode(curr.sleep);
+                  C.appendChild(cellContents);
+                  C = R.insertCell(4);
+                  cellContents = document.createTextNode(curr.kids);
+                  C.appendChild(cellContents);
+                  C = R.insertCell(5);
+                  cellContents = document.createTextNode(curr.mobility);
+                  C.appendChild(cellContents);
+                  C = R.insertCell(6);
+                  cellContents = document.createTextNode(curr.notes);
+                  C.appendChild(cellContents);
+                  C = R.insertCell(7);
+                  cellContents = document.createTextNode(curr.occasion);
+                  C.appendChild(cellContents);
+                  C = R.insertCell(8);
+                  cellContents = document.createTextNode(curr.seatNumber);
+                  C.appendChild(cellContents);
+                  //C = R.insertCell(9);
+               
+               }
+              console.log(theTable);
+
+              document.write("<br>");
+
+
+            } 
+
+          }
+    </script>
+
+ 
     <body>
         <form name="searchByNumber">
             <label>Flight Number:</label>
