@@ -1,3 +1,19 @@
+<?php 
+ header('Content-Type: text/javascript; charset=UTF-8');
+    if(isset($_POST["addme"])) {
+        
+ 
+
+    $fname = $_POST["lname"];
+    $lname = $_POST["fname"];
+    $email = $_POST["email"];
+
+    $str = $fname . "," . $lname ."," .$email;
+
+     file_put_contents("emails.txt", $str . PHP_EOL, FILE_APPEND);
+
+}
+?>
 <!DOCTYPE html>
 <head>
     <title>AirBae | Rediscover Traveling</title>
@@ -22,22 +38,7 @@
 
 </head>
 <body>
-<?php 
- header('Content-Type: text/javascript; charset=UTF-8');
-    if(isset($_POST["addme"])) {
-        
- 
 
-    $fname = $_POST["lname"];
-    $lname = $_POST["fname"];
-    $email = $_POST["email"];
-
-    $str = $fname . "," . $lname ."," .$email;
-
-     file_put_contents("emails.txt", $str . PHP_EOL, FILE_APPEND);
-
-}
-?>
 <h2> Join our mailing list</h2>
     <form action = "" method = "POST">
             <label>First Name:</label>
