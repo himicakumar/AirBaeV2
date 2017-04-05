@@ -23,6 +23,7 @@
 </head>
 <body>
 <?php 
+ header('Content-Type: text/javascript; charset=UTF-8');
     if(isset($_POST["addme"])) {
         
  
