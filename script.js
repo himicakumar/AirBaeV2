@@ -1,4 +1,4 @@
-   function flight (fNum, fDept, fArrival, fDate, fPassengers, fAirline) { 
+          function flight (fNum, fDept, fArrival, fDate, fPassengers, fAirline) { 
             this.fNum = fNum;
             this.fDept = fDept;
             this.fArrival = fArrival;
@@ -44,11 +44,23 @@
           pass3 =  ("Himica", "Kumar", "yes", "no", "no", "rarely", "I would love to get to know people that are headed to the same destination", "Adele concert", "C40")
           flightNYSF.fPassengers.push(pass3);
           pass4 =  ("Shruti", "Mhasawade", "yes", "no", "no", "rarely", "I would love to get to know people that are headed to the same destination", "Adele concert", "C40")
+          flightNYSF.fPassengers.push(pass4);
+          pass5 =  ("Amir", "Gurung", "yes", "yes", "no", "sometimes", "I prefer the window seat", "Drag Con", "C20")
+          flightCHNY.fPassengers.push(pass5)
           //Going to add an array of passengers on a specific flight to keep it simple for now
           /*function passenger (pName, pFlight) { 
             this.pName = pName; 
           }*/
 
-          var tempFlightNumber = "";
+          /*var tempFlightNumber = "";
           var tempDate = "";
           var setTemp = false;
+
+          function UpdateTemp(tfn, td, st) {
+            tempFlightNumber = tfn;
+            tempDate = td;
+            setTemp = st;
+          }*/
+
+        localStorage.setItem("flightArray", JSON.stringify(array));
+

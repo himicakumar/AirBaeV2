@@ -10,36 +10,91 @@
     <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        <link rel="shortcut icon" href="images/newfav.ico" type="image/x-icon">
-        <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="images/newfav.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-         <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript">
+    
+       console.log("flight number " +localStorage.getItem("flightNumber"));
+       console.log("flight date " +localStorage.getItem("flightDate"));
+       var farray = localStorage.getItem("flightArray");
+       console.log(farray);
+       flightNumber = localStorage.getItem("flightNumber");
 
+      function processAddPassengerForm() {
+
+         var first = document.addPassenger.fname.value;
+         var last = document.addPassenger.lname.value;
+         var socialize = document.addPassenger.socialize.value;
+         var sleep = document.addPassenger.sleep.value;
+         var kids = document.addPassenger.kids.value;
+         var mobility = document.addPassenger.mobility.value;
+         var notes = document.addPassenger.notes.value;
+         var occasion =  document.addPassenger.occasion.value;
+         var seatNumber = document.addPassenger.seatNumber.value;
+         tempPass = new passenger (first, last, socialize, sleep, kids, mobility, notes, occasion, seatNumber);
+         for (var i = 0; i < farray.length; i++) { 
+                console.log("flight "+farray[i].fNum); //gets the flight numbers of all stored flights
+                if (flightNumber == farray[i].fNum) { 
+                  //console.log("FLIGHT FOUND!!");  
+                  //document.write("FLIGHT FOUND");
+                  //DO SOMETHING HERE!
+                  console.log(farray[i].fPassengers);
+                  farray[i].fPassengers.push(tempPass);
+                }
+              }   
+       }
+    </script>
     </head>
     <body>
 
-     (fname, lname, socialize, sleep, kids, mobility, notes, occasion, seatNumber)
+     <!--(fname, lname, socialize, sleep, kids, mobility, notes, occasion, seatNumber)-->
 
      <form name="addPassenger">
             <label>First Name:</label>
-            <input type="text" name="flightNumber" />
+            <input type="text" name="fname" />
             <br>
             <label>Last Name:</label>
-            <input type="text" name="flightNumber" />
+            <input type="text" name="lname" />
             <br>
-            <label>Do you wish to socialize?</label>
+            <label>Are you a social person?</label>
             <select name="socialize">
                 <option value="Yes" selected>Yes</option>
                 <option value="No">No</option>
             </select>
             <br>
-            <input type="button" value="Search now!" onClick="processFNumberForm()"/>
-
+            <label>Do you wish to sleep?</label>
+            <select name="sleep">
+                <option value="Yes" selected>Yes</option>
+                <option value="No">No</option>
+            </select>
+            <br>
+            <label>Do you have kids?</label>
+            <select name="kids">
+                <option value="Yes" selected>Yes</option>
+                <option value="No">No</option>
+            </select>
+            <br>
+            <label>How often do you like getting up?</label>
+            <select name="mobility">
+                <option value="Rarely" selected>Rarely</option>
+                <option value="Sometimes">Sometimes</option>
+                <option value="Frequently">Frequently</option>
+            </select>
+            <br>
+            <label>Additional Notes:</label>
+            <input type="text" name="notes" />
+            <br>
+            <label>What's the occasion?</label>
+            <input type="text" name="occasion" />
+            <br>
+            <label>Seat number?</label>
+            <input type="text" name="seatNumber" />
+            <br>
+            <input type="button" value="Add me" onClick="processAddPassengerForm()"/>
          </form>
         
     </body>
-    <script type="text/javascript">
-        console.log(tempFlightNum);
-    </script>
     </html>
 

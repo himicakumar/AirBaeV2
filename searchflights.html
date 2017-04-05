@@ -10,15 +10,13 @@
     <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        <link rel="shortcut icon" href="images/newfav.ico" type="image/x-icon">
-        <link rel="icon" href="favicon.ico" type="image/x-icon">
-         <script type="text/javascript" src="script.js"></script>
-    </head>
-
+    <link rel="shortcut icon" href="images/newfav.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <script type="text/javascript" src="script.js"></script>
+  
       <script type="text/javascript" >
    
       
-
           function processFNumberForm() {
               var flightNumber = document.searchByNumber.flightNumber.value;
               var deptDate = document.searchByNumber.deptDate.value;
@@ -29,13 +27,16 @@
 
               //search through array of flight objects to see if flight num matches any
               var found = false;
-              for (var i = 0; i < array.length; i++) { 
-                console.log(array[i].fNum); //gets the flight numbers of all stored flights
-                if (flightNumber == array[i].fNum) { 
+              var farray = localStorage.getItem("flightArray");
+              farray = JSON.parse(farray);
+              console.dir(farray);
+              for (var i = 0; i < farray.length; i++) { 
+                console.log("hello" +farray[i].fNum); //gets the flight numbers of all stored flights
+                if (flightNumber == farray[i].fNum) { 
                   //console.log("FLIGHT FOUND!!");  
                   //document.write("FLIGHT FOUND");
                   //DO SOMETHING HERE!
-                  displayFlightDetails(array[i]);
+                  displayFlightDetails(farray[i]);
                   found = true;
                 }
               }   
@@ -52,12 +53,13 @@
                 var date = document.searchByLocation.deptDate.value;
 
                 console.log("Dept: " + departure + "Arrival: " + arrival + "Date: " + date);
-
-                for (var i = 0; i < array.length; i++) { 
+                farray =  localStorage.getItem("flightArray");
+                for (var i = 0; i < farray.length; i++) { 
                 //console.log(array[i].fNum); //gets the flight numbers of all stored flights
-                if (departure == array[i].fDept && arrival == array[i].fArrival && date == array[i].fDate) { 
+                if (departure == farray[i].fDept && arrival == farray[i].fArrival && date == farray[i].fDate) { 
+                  console.log(farray[i].fDept);
                   //console.log("FLIGHT FOUND!!");  
-                  displayFlightDetails(array[i]);
+                  displayFlightDetails(farray[i]);
                   //DO SOMETHING HERE!
                 }
               }
@@ -70,9 +72,12 @@
             if (flight.fPassengers.length == 0) { 
               document.write("There are no passengers registered on AirBae for this flight yet. Be the first!");
               document.write("<br>");
-              tempFlightNumber = flight.fNum;
-              tempDate = flight.fDate;
-              setTemp = true;
+             
+              //UpdateTemp(flight.fNum, flight.fNum, true);
+              localStorage.setItem("flightNumber", flight.fNum);
+              localStorage.setItem("flightDate", flight.fDate);
+              console.log("flight number " +localStorage.getItem("flightNumber"));
+              console.log("flight date " +localStorage.getItem("flightDate"));
               document.write("Click <a href='newuser.html'> here </a> to add yourself to the flight")
               document.write("<br>");
 
@@ -93,6 +98,8 @@
                    var cellContents = document.createTextNode(fields[i]);
                    C.appendChild(cellContents);
                }
+
+
                
                for (var i = 0, len = flight.fPassengers.length; i < len; ++i) {
                   var curr = flight.fPassengers[i];
@@ -141,8 +148,10 @@
           }
     </script>
 
- 
+    </head>
+
     <body>
+        <h2> Search for your Flight </h2>
         <form name="searchByNumber">
             <label>Flight Number:</label>
             <input type="text" name="flightNumber" />
